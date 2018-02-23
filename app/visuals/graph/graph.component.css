@@ -1,0 +1,17 @@
+.node[_ngcontent-c3] {
+    cursor: pointer;
+    transition: stroke-width 0.1s ease-out,
+        fill 0.1s ease-out,
+        stroke 0.1s ease-out;
+
+    stroke: white;
+    stroke-width: 0.25;
+}
+
+.node-name[_ngcontent-c3] {
+  font-family: 'Lato';
+  text-anchor: middle;
+  alignment-baseline: central;
+  font-weight: 300;
+  fill: white;
+}
