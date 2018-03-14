@@ -7,7 +7,7 @@ import * as d3 from 'd3';
 const FORCES = {
     LINKS: 1 / 50,
     COLLISION: 1,
-    CHARGE: -1
+    CHARGE: -100
 }
 
 export class ForceDirectedGraph {
@@ -18,12 +18,10 @@ export class ForceDirectedGraph {
     public links: Link[] = [];
 
     constructor(nodes, links, options: { width, height }) {
-        console.log('inside forcegraph constructor');
         this.nodes = nodes;
         this.links = links;
         
         this.initSimulation(options);
-        console.log('construction done');
     }
     
 
@@ -31,7 +29,22 @@ export class ForceDirectedGraph {
         if (!this.simulation) {
             throw new Error('simulation was not initialized yet');
         }
-
+        /*var svg = d3.select("body").append("svg")
+                            .attr("width", 491)
+                            .attr("height", 484);
+                            svg.append("svg:defs").selectAll("marker")
+                            .data(["end"])      // Different link/path types can be defined here
+                          .enter().append("svg:marker")    // This section adds in the arrows
+                            .attr("id", String)
+                            .attr("viewBox", "0 -5 10 10")
+                            .attr("refX", 15)
+                            .attr("refY", -1.5)
+                            .attr("markerWidth", 6)
+                            .attr("markerHeight", 6)
+                            .attr("orient", "auto")
+                          .append("svg:path")
+                            .attr("d", "M0,-5L10,0L0,5");
+        console.log('svg', svg);*/
         this.simulation.nodes(this.nodes);
     }
 
@@ -49,13 +62,15 @@ export class ForceDirectedGraph {
     }
 
     initSimulation(options) {
+
+
+        
         if (!options || !options.width || !options.height) {
             throw new Error('missing options when initializing simulation');
         }
 
         /** Creating the simulation */
         if (!this.simulation) {
-            console.log('force simulation');
             const ticker = this.ticker;
             
             // Creating the force simulation and defining the charges
@@ -72,12 +87,16 @@ export class ForceDirectedGraph {
 
             this.initNodes();
             this.initLinks();
+
         }
 
+
+
         /** Updating the central force of the simulation */
-        this.simulation.force("centers", d3.forceCenter(options.width / 2, options.height / 2));
+        this.simulation.force("centers", d3.forceCenter(options.width / 2, options.height/4));
 
         /** Restarting the simulation internal timer */
         this.simulation.restart();
     }
+    
 }

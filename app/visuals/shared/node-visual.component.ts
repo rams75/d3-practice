@@ -8,9 +8,7 @@ import { Node } from '../../d3/models/node';
   template: `
     <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'">
       <svg:circle
-          cx="0"
-          cy="0"
-          r="50"
+          r="2"
           fill="rgb(0, 106, 197)">
       </svg:circle>
       <svg:text _ngcontent-c3="" class="node-name">

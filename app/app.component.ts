@@ -22,6 +22,11 @@ export class AppComponent {
       this.nodes.push(new Node(i));
     }
 
+    for(let i=0; i<this.nodes.length; i++) {
+      let node = this.nodes[i];
+      this.nodes[i] = node;
+    }
+
     for (let i = 1; i < N; i++) {
       for (let m = 2; i * m < N; m++) {
         /** increasing connections toll on connecting nodes */
@@ -29,7 +34,8 @@ export class AppComponent {
         //this.nodes[getIndex(i * m)].linkCount++;
 
         /** connecting the nodes before starting the simulation */
-        this.links.push(new Link(i, i * m));
+        let link = new Link(i, i * m);
+         this.links.push(link);
       }
     }
     console.log('nodes are ', this.nodes);

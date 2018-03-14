@@ -8,13 +8,18 @@ import {Node} from '../../d3/models/node';
 @Component({
   selector: 'graph',
   template: `
-    <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
+    <svg #svg [attr.width]="_options.width" [attr.height]="_options.height" [zoomableOf]="svg">
       <g [zoomableOf]="svg">
         <g [linkVisual]="link" *ngFor="let link of links"
+        [mousehoverLink]="link"
         ></g>
         <g [nodeVisual]="node" *ngFor="let node of nodes"
         [draggableNode]="node"
-      [draggableInGraph]="graph"></g>
+        [mousehoverNode]="node"
+        [allNodes]="nodes"
+        [allLinks]="links"
+      [draggableInGraph]="graph"
+      [zoomableOf]="svg"></g>
       </g>
     </svg>
   `,
@@ -31,7 +36,6 @@ export class GraphComponent {
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
-    console.log('graph after ', this.graph);
   }
 
   ngAfterViewInit() {

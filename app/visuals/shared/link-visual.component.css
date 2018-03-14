@@ -4,6 +4,11 @@
 }
 
 .line {
-    stroke-width: 0.25;
+    stroke-width: 1;
     stroke: rgb(10, 0, 5);
+}
+
+.line2 {
+    stroke-width: 3;
+    stroke: rgb(255, 41, 255);
 }
